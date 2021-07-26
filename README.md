@@ -15,10 +15,10 @@ exponer la información para que cualquier frontend pueda consumirla.
 
 👉 Utilizar la librería Spring Security.
 
-⚠ ¡No es indispensable hacer todo!
+### ⚠ ¡No es indispensable hacer todo!
 
 Mientras más completes, mayor puntaje obtendrás, pero puedes enviar la app hasta el estadío que la
-tengas en base a tu cono
+tengas en base a tu cono.
 
  
 ## Requerimientos técnicos
