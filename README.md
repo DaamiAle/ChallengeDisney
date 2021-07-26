@@ -52,6 +52,7 @@ tengas en base a tu cono.
 ##
 
 3. Listado de Personajes
+   
    El listado deberá mostrar:
    * Imagen.
    * Nombre.
@@ -59,16 +60,20 @@ tengas en base a tu cono.
    * /characters
 ##
 
-4. Creación, Edición y Eliminación de Personajes (CRUD).
+4. Creación, Edición y Eliminación de Personajes (CRUD)
+   
    Deberán existir las operaciones básicas de creación, edición y eliminación de personajes.
 ##
 
 5. Detalle de Personaje
+   
    En el detalle deberán listarse todos los atributos del personaje, como así también sus películas o series relacionadas.
 ##
 
 6. Búsqueda de Personajes
+   
    Deberá permitir buscar por nombre, y filtrar por edad, peso o películas/series en las que participó. 
+   
    Para especificar el término de búsqueda o filtros se deberán enviar como parámetros de query:
    * GET /characters?name=nombre
    * GET /characters?age=edad
@@ -76,29 +81,36 @@ tengas en base a tu cono.
 ##
 
 7. Listado de Películas
+   
    Deberá mostrar solamente los campos imagen, título y fecha de creación.
+   
    El endpoint deberá ser:
    * GET /movies
 ##
 
 8. Detalle de Película / Serie con sus personajes
+   
    Devolverá todos los campos de la película o serie junto a los personajes asociados a la misma
 ##
 
 9. Creación, Edición y Eliminación de Película / Serie
+   
    Deberán existir las operaciones básicas de creación, edición y eliminación de películas o series.
 ##
 
 10. Búsqueda de Películas o Series
-   Deberá permitir buscar por título, y filtrar por género. Además, permitir ordenar los resultados por fecha de creación de forma ascendiente o descendiente.
-   El término de búsqueda, filtro u ordenación se deberán especificar como parámetros de query:
-   * /movies?name=nombre
-   * /movies?genre=idGenero
-   * /movies?order=ASC | DESC
+   
+    Deberá permitir buscar por título, y filtrar por género. Además, permitir ordenar los resultados por fecha de creación de forma ascendiente o descendiente.
+   
+    El término de búsqueda, filtro u ordenación se deberán especificar como parámetros de query:
+    * /movies?name=nombre
+    * /movies?genre=idGenero
+    * /movies?order=ASC | DESC
 ##
 
 11. Envío de emails
-   Al registrarse en el sitio, el usuario deberá recibir un email de bienvenida. Es recomendable, la utilización de algún servicio de terceros como SendGrid.
+    
+    Al registrarse en el sitio, el usuario deberá recibir un email de bienvenida. Es recomendable, la utilización de algún servicio de terceros como SendGrid.
 
 
 ## Documentación
