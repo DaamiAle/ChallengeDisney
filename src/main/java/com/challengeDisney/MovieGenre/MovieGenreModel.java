@@ -2,7 +2,7 @@ package com.challengeDisney.MovieGenre;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +12,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.challengeDisney.Movies.MovieModel;
+import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,12 +23,13 @@ import lombok.NoArgsConstructor;
 @Table(name = "movieGenre")
 public class MovieGenreModel {
 	@Id
-	@SequenceGenerator(name = "sequenceGenre",sequenceName = "sequenceGenre",allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenre")
+	@SequenceGenerator(name = "seqGenre",sequenceName = "seqGenre",allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGenre")
 	private Long id;
+	@Column(unique = true) @NotNull
 	private String name;
-	
-	@OneToMany(mappedBy = "moviesGenreModel", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<MovieModel> moviesModel;
+	private String imageUrl;
+	@OneToMany(mappedBy = "movieGen")
+	private List<MovieModel> movies;
 
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,24 +19,27 @@ public class CharactersController {
 	@Autowired
 	CharactersService characterService;
 	
-	@GetMapping()
-	public ArrayList<String> charactersNameList(){
-		return characterService.charactersNameList();
-	}
-	@GetMapping("/{id}")
-	public Optional<CharactersModel> characterDetails(Long id){
-		return this.characterService.getById(id);
-	}
 	@PostMapping("/save")
 	public CharactersModel saveCharacter(@RequestBody CharactersModel character) {
-		return this.characterService.saveCharacter(character);
+		return characterService.saveCharacter(character);
 	}
+	
 	@DeleteMapping(path = "/{id}")
 	public String deleteCharacter(@PathVariable("id") Long id) {
-		boolean okAction = this.characterService.deleteCharacter(id);
-		String answer = null;
-		if (okAction) { answer = "Se elimino correctamente el personaje con id: " + id; }
-		else { answer = "No se pudo eliminar el personaje con id: " + id; }
-		return answer;
+		boolean okDeletion = characterService.deleteCharacter(id);
+		return (okDeletion) ? "Se elimino correctamente el personaje con id: " + id.toString() : "No se pudo eliminar el personaje con id: " + id.toString() ;
+	}
+	
+	@GetMapping
+	public ArrayList<CharacterDTO> charactersList(	@RequestParam (required=false, name="name"	) 	String 	name, 
+													@RequestParam (required=false, name="age"	) 	Long 	age, 
+													@RequestParam (required=false, name="movies") 	Long 	movieId,
+													@RequestParam (required=false, name="weigth") 	Float 	weigth){ 
+		return characterService.getCharactersBy(name,age,movieId,weigth);
+	}
+	
+	@GetMapping("/{id}")
+	public Optional<CharactersModel> characterDetails(@PathVariable("id") Long id){
+		return characterService.getById(id);
 	}
 }

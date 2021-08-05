@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthPage {
 	@GetMapping("/login")
 	public String loginForm() {
-		return "home.html";
+		return "login";
 	}
 	
 }

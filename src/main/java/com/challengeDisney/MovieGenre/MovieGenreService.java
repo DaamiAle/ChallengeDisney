@@ -13,8 +13,17 @@ public class MovieGenreService{
 	@Autowired
 	private MovieGenreRepository genreRepository;
 	
-	public ArrayList<MovieGenreModel> getMovieGenre(){
-		return (ArrayList<MovieGenreModel>) genreRepository.findAll();
+	public MovieGenreModel saveGenre(MovieGenreModel movieGenre) {
+		return genreRepository.save(movieGenre);
 	}
-	
+
+	public ArrayList<MovieGenreModel> getAllGenres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public MovieGenreModel createGenre(MovieGenreModel genre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
