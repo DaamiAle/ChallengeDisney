@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.challengeDisney.Models.CharactersModel;
-import com.challengeDisney.Models.MovieModel;
+//import com.challengeDisney.Models.CharactersModel;
+//import com.challengeDisney.Models.MovieModel;
 import com.challengeDisney.Models.UserModel;
 import com.challengeDisney.Repositories.UserRepository;
 
@@ -34,7 +34,7 @@ class ChallengeDisneyApplicationTests {
 /*
 	@Autowired
 	private CharactersRepository characterRepo;
-	*/
+	
 	@Test
 	public void crearPersonaje() {
 		CharactersModel character = new CharactersModel();
@@ -49,5 +49,5 @@ class ChallengeDisneyApplicationTests {
 		character.getMovies().add(movie);
 		
 		
-	}
+	}*/
 }

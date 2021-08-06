@@ -1,6 +1,6 @@
 package com.challengeDisney.Models;
 
-import java.util.Collection;
+//import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.GrantedAuthority;
 
 import com.sun.istack.NotNull;
 
@@ -34,5 +34,5 @@ public class UserModel{
 	@Column(unique = true) @NotNull //@Email
 	private String userEmail;
 //	private Integer accessLevel;
-	private Collection<? extends GrantedAuthority> userRoles;
+	//private List<? extends GrantedAuthority> userRoles;
 }

@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.springframework.stereotype.Service;
 
+import com.challengeDisney.DTO.UserDTO;
 import com.challengeDisney.Models.UserModel;
 import com.challengeDisney.Repositories.UserRepository;
 
@@ -31,7 +32,8 @@ public class UserServiceDetails implements UserDetailsService{
 	public boolean deleteUser(String userName) {
 		boolean okAction;
 		try {
-			userRepo.deleteById(userName);
+			UserModel user = userRepo.findByUserName(userName);
+			userRepo.delete(user);
 			okAction = true;
 		}
 		catch(Exception err){
@@ -43,22 +45,16 @@ public class UserServiceDetails implements UserDetailsService{
 	public Optional<UserModel> getById(Long id) {
 		return userRepo.findById(id);
 	}
-	/*
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserModel user = userRepo.findByUserName(username);
-		ArrayList<GrantedAuthority> roles = new ArrayList<>();
-		user.getUserRol().forEach(rol -> roles.add(new SimpleGrantedAuthority(rol)));
-		//roles.addAll(new SimpleGrantedAuthority(user.getUserRol()));
-		UserDetails userDet = new User(user.getUserName(),user.getPassword(),roles);
-		return userDet;
-	}
-	*/
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserModel user = userRepo.findByUserName(username);
+		return (UserDetails) user;
+	}
+
+	public boolean validate(UserDTO user) {
+		UserModel userModel = userRepo.findByUserName(user.getUserName());
+		return userModel.getUserName().equals(user.getUserName()) && userModel.getPassword().equals(user.getPassword());
 		
-		return null;
 	}
 }

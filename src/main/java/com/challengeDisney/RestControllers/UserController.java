@@ -24,10 +24,10 @@ public class UserController {
 	}
 	@GetMapping("/{id}")
 	public Optional<UserModel> userDetails(Long id){
-		return this.userServ.getById(id);
+		return userServ.getById(id);
 	}
 	@PostMapping("/save")
 	public UserModel saveUser(@RequestBody UserModel user) {
-		return this.userServ.saveUser(user);
+		return userServ.saveUser(user);
 	}
 }
