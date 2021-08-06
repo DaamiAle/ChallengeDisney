@@ -1,4 +1,4 @@
-package com.challengeDisney.Characters;
+package com.challengeDisney.RestControllers;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.challengeDisney.DTO.CharacterDTO;
+import com.challengeDisney.Models.CharactersModel;
+import com.challengeDisney.Services.CharactersService;
 
 @RestController
 @RequestMapping("/characters")

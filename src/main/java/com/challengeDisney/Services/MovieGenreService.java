@@ -1,9 +1,12 @@
-package com.challengeDisney.MovieGenre;
+package com.challengeDisney.Services;
 
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.challengeDisney.Models.MovieGenreModel;
+import com.challengeDisney.Repositories.MovieGenreRepository;
 
 
 

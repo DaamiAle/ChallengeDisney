@@ -1,4 +1,4 @@
-package com.challengeDisney.MovieGenre;
+package com.challengeDisney.RestControllers;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.challengeDisney.Models.MovieGenreModel;
+import com.challengeDisney.Services.MovieGenreService;
 
 @RestController
 @RequestMapping("/genre")

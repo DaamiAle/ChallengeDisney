@@ -1,4 +1,4 @@
-package com.challengeDisney.Users;
+package com.challengeDisney.RestControllers;
 
 import java.util.Optional;
 
@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.challengeDisney.Models.UserModel;
+import com.challengeDisney.Services.UserServiceDetails;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
-	UserService userServ;
+	UserServiceDetails userServ;
 	
 	@GetMapping
 	public String userPage() {

@@ -1,8 +1,10 @@
-package com.challengeDisney.Users;
+package com.challengeDisney.Repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<UserModel, Long>{
-	public UserModel findByUserName(String userName);
+import com.challengeDisney.Models.UserModel;
 
+public interface UserRepository extends JpaRepository<UserModel, Long>{
+
+	UserModel findByUserName(String username);
 }

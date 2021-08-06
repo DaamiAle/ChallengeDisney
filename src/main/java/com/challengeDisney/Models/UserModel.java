@@ -1,16 +1,17 @@
-package com.challengeDisney.Users;
+package com.challengeDisney.Models;
+
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-//import com.challengeDisney.Roles.RolModel;
+import org.springframework.security.core.GrantedAuthority;
+
 import com.sun.istack.NotNull;
 
 import lombok.Data;
@@ -29,11 +30,9 @@ public class UserModel{
 	private String userName;
 	@NotNull
 	private String password;
+	private String name;
 	@Column(unique = true) @NotNull //@Email
 	private String userEmail;
 //	private Integer accessLevel;
-//	@NotNull
-//	@ManyToOne
-//	@JoinColumn(name= "rol_id")
-//	private RolModel userRol;
+	private Collection<? extends GrantedAuthority> userRoles;
 }

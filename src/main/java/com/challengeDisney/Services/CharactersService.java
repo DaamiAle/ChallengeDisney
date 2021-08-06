@@ -1,10 +1,14 @@
-package com.challengeDisney.Characters;
+package com.challengeDisney.Services;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.challengeDisney.DTO.CharacterDTO;
+import com.challengeDisney.Models.CharactersModel;
+import com.challengeDisney.Repositories.CharactersRepository;
 
 @Service
 public class CharactersService{

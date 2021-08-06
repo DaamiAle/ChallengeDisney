@@ -1,12 +1,16 @@
-package com.challengeDisney.Characters;
+package com.challengeDisney.DTO;
+
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-public class CharacterDTO {
+public class MovieDTO {
 	private Long id;
 	private String imageUrl;
-	private String name;
+	private String movieTitle;
+	private Date creationDate;
+
 }

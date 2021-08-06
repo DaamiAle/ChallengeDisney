@@ -9,11 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.challengeDisney.Characters.CharactersModel;
-//import com.challengeDisney.Characters.CharactersRepository;
-import com.challengeDisney.Movies.MovieModel;
-import com.challengeDisney.Users.UserModel;
-import com.challengeDisney.Users.UserRepository;
+import com.challengeDisney.Models.CharactersModel;
+import com.challengeDisney.Models.MovieModel;
+import com.challengeDisney.Models.UserModel;
+import com.challengeDisney.Repositories.UserRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

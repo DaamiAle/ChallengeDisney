@@ -1,4 +1,4 @@
-package com.challengeDisney.Movies;
+package com.challengeDisney.Services;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -6,6 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import com.challengeDisney.DTO.MovieDTO;
+import com.challengeDisney.Models.MovieModel;
+import com.challengeDisney.Repositories.MovieRepository;
 
 @Service
 public class MovieService{

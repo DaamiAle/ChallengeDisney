@@ -1,4 +1,4 @@
-package com.challengeDisney.Movies;
+package com.challengeDisney.Models;
 
 import java.util.Date;
 import java.util.List;
@@ -17,8 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.challengeDisney.Characters.CharactersModel;
-import com.challengeDisney.MovieGenre.MovieGenreModel;
 import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;
