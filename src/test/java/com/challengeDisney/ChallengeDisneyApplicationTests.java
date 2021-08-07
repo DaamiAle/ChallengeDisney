@@ -18,17 +18,17 @@ import com.challengeDisney.Repositories.UserRepository;
 @SpringBootTest
 class ChallengeDisneyApplicationTests {
 	@Autowired
-	private BCryptPasswordEncoder bCryptEncoder;
+	BCryptPasswordEncoder bCryptEncoder;
 	
 	@Autowired
-	private UserRepository userRepo;
+	UserRepository userRepo;
 	
 	@Test
 	public void crearUsuario() {
 		UserModel user = new UserModel();
 		user.setUserName("ReCoil");
 		user.setPassword(bCryptEncoder.encode("1234"));
-		UserModel userReturn = userRepo.save(user);
+		UserModel userReturn = userRepo.saveAndFlush(user);
 		assertTrue(userReturn.getPassword().equalsIgnoreCase(user.getPassword()));
 	}
 /*

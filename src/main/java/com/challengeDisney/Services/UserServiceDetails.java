@@ -1,13 +1,14 @@
 package com.challengeDisney.Services;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.springframework.stereotype.Service;
 
@@ -20,41 +21,27 @@ import com.challengeDisney.Repositories.UserRepository;
 public class UserServiceDetails implements UserDetailsService{
 	@Autowired
 	UserRepository userRepo;
-	@Autowired
-	private BCryptPasswordEncoder bCryptEncoder;
-	
-	public UserModel saveUser(UserModel user){
-		String userPassword = user.getPassword();
-		user.setPassword(bCryptEncoder.encode(userPassword));
-		return userRepo.saveAndFlush(user);
-	}
-	
-	public boolean deleteUser(String userName) {
-		boolean okAction;
-		try {
-			UserModel user = userRepo.findByUserName(userName);
-			userRepo.delete(user);
-			okAction = true;
-		}
-		catch(Exception err){
-			okAction = false;
-		}
-		return okAction;
-	}
-
-	public Optional<UserModel> getById(Long id) {
-		return userRepo.findById(id);
-	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserModel user = userRepo.findByUserName(username);
-		return (UserDetails) user;
+		UserModel userEntity = new UserModel();
+		if (username != null) {
+			userEntity = userRepo.findByUserName(username);
+		}
+		String userEntityName = userEntity.getUserName();
+		String userEntityPassword = userEntity.getPassword();
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		userEntity.getRoles().forEach(rol -> {
+			authorities.add( rol.getAuthoritie()); 
+		});
+		User userReturn = new User(userEntityName,userEntityPassword,authorities);
+		return (userEntity != null) ? userReturn : null;
 	}
 
-	public boolean validate(UserDTO user) {
-		UserModel userModel = userRepo.findByUserName(user.getUserName());
-		return userModel.getUserName().equals(user.getUserName()) && userModel.getPassword().equals(user.getPassword());
-		
+	public UserModel createUser(UserDTO user) {
+		UserModel userEntity = user.convertToUserModel(user);
+		return userRepo.saveAndFlush(userEntity);
 	}
+	
+	
 }
