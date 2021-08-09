@@ -1,10 +1,7 @@
 package com.challengeDisney.RestControllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,16 +18,25 @@ import com.challengeDisney.DTO.UserDTO;
 public class AuthPage {
 	@Autowired
 	AuthPageService authPageService;
+	
+	@GetMapping("/login")
+	public String loginPage() {
+		return "ESTA ES LA PAGINA DE LOGIN";
+	}
+	@GetMapping
+	public String authPage() {
+		return "ESTA ES LA PAGINA DE AUTENTICACION";
+	}
 
 	@PostMapping("/login")
-	public ResponseEntity<String> loginUser(@RequestBody UserDTO user) {
-		return authPageService.loginUser(user) ? new ResponseEntity<String>(HttpStatus.OK) : new ResponseEntity<String>("Datos de ingreso incorrectos.", HttpStatus.BAD_REQUEST);
+	public String loginUser(@RequestBody UserDTO user) {
+		return authPageService.loginUser(user) ? "redirect:/user" : "Datos de ingreso incorrectos.";
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> registerUser(@ModelAttribute UserDTO user){
+	public String registerUser(@ModelAttribute UserDTO user){
 		return authPageService.registerUser(user) ? 
-				new ResponseEntity<String>("Usuario registrado correctamente", HttpStatus.CREATED) : new ResponseEntity<String>("No se ha podido registrar correctamente.", HttpStatus.BAD_REQUEST);
+				"Usuario registrado correctamente" : "No se ha podido registrar correctamente.";
 	}
 	
 	

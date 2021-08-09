@@ -33,16 +33,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
+		http.authorizeRequests()
+		.antMatchers("/","/auth*").permitAll()
+		.antMatchers("/users").access("hasRole('USER')")
+		.antMatchers("/webAdministration*").access("hasRole('ADMIN')")
+		.anyRequest().authenticated()
+		.and()
+			.formLogin().loginPage("/auth/login").permitAll()
+			.defaultSuccessUrl("/").failureUrl("/auth/login?error=true")
+			.usernameParameter("username")
+			.passwordParameter("password")
+		.and()
+			.logout().permitAll().logoutSuccessUrl("/auth/login?logout");
+		/*http
 			.authorizeRequests()
-				.antMatchers("/webAdministration/**").hasRole("FULLADMIN")
-				.antMatchers("/","/auth/login","/auth/register").permitAll()
+				.antMatchers("/webAdministration/*").hasRole("FULLADMIN")
+				.antMatchers("/","/auth*").permitAll()
 				.anyRequest().authenticated()
 			.and()
 				.formLogin().loginPage("/auth/login").defaultSuccessUrl("/user",true).failureUrl("/auth/login?error=true")
 				.loginProcessingUrl("/auth/login").permitAll()
 				.usernameParameter("username").passwordParameter("password")
 			.and()
-				.logout().logoutUrl("/auth/logout").logoutSuccessUrl("/auth");
+				.logout().logoutUrl("/auth/logout").logoutSuccessUrl("/auth");*/
 	}
 }

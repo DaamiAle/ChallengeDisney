@@ -9,7 +9,7 @@ import com.challengeDisney.DTO.UserDTO;
 
 @Service
 public class AuthPageService {
-
+	
 	private BCryptPasswordEncoder bCriptEncoder;
 	@Autowired
 	UserServiceDetails userServ;
