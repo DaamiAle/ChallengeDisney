@@ -5,7 +5,7 @@ import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,10 +33,10 @@ public class AuthPageController {
 		return "ESTA ES LA PAGINA DE AUTENTICACION";
 	}
 
-	@PostMapping("/login")
-	public String loginUser(@RequestBody UserDTO user) {
-		return authPageService.loginUser(user) ? "redirect:/user" : "Datos de ingreso incorrectos.";
-	}
+//	@PostMapping("/login")
+//	public String loginUser(@RequestBody UserDTO user) {
+//		return authPageService.loginUser(user) ? "redirect:/user" : "Datos de ingreso incorrectos.";
+//	}
 	
 	@PostMapping("/register")
 	public ResponseEntity<UserModel> registerUser(@RequestBody UserDTO user){
