@@ -13,12 +13,13 @@ public class UserDTO {
 	private String name;
 	private String userEmail;
 	
-	public UserModel convertToUserModel(UserDTO user) {
+	public UserModel convertToUserModel() {
+//		return new UserModel(null, this.userName, this.password, this.name, this.userEmail, null);
 		UserModel userEntity = new UserModel();
-		userEntity.setUserName(user.getUserName());
-		userEntity.setPassword(user.getPassword());
-		userEntity.setName(user.getName());
-		userEntity.setUserEmail(user.getUserEmail());
+		userEntity.setUserName(this.userName);
+		userEntity.setPassword(this.password);
+		userEntity.setName(this.name);
+		userEntity.setUserEmail(this.userEmail);
 		return userEntity;
 	}
 }

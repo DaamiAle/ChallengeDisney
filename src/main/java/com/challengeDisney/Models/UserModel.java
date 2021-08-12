@@ -38,9 +38,9 @@ public class UserModel{
 	private String userEmail;
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinTable(
-	        name = "user_authorities",
+	        name = "user_role",
 	        joinColumns = @JoinColumn(name = "user_id", nullable = false),
 	        inverseJoinColumns = @JoinColumn(name="rol_id", nullable = false)
 	        )
-	private List<RolesModel> roles;
+	private List<Role> roles;
 }

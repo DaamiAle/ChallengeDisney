@@ -13,7 +13,6 @@ import com.challengeDisney.Repositories.MovieRepository;
 
 @Service
 public class MovieService{
-	
 	@Autowired
 	MovieRepository movieRepository;
 	

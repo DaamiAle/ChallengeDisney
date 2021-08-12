@@ -6,13 +6,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.challengeDisney.DTO.UserDTO;
+import com.challengeDisney.Models.UserModel;
 
 @Service
 public class AuthPageService {
 	
 	private BCryptPasswordEncoder bCriptEncoder;
 	@Autowired
-	UserServiceDetails userServ;
+	UserService userServ;
 
 	public boolean loginUser(UserDTO user) {
 		boolean okAction = false;
@@ -24,10 +25,10 @@ public class AuthPageService {
 		return okAction;
 	}
 
-	public boolean registerUser(UserDTO user) {
+	public UserModel registerUser(UserDTO user) {
 		String userPassword = bCriptEncoder.encode(user.getPassword());
 		user.setPassword(userPassword);
-		return userServ.loadUserByUsername(user.getUserName()) != null ? userServ.createUser(user) != null : false;
+		return userServ.saveUser(user);
 	}
 	
 	
