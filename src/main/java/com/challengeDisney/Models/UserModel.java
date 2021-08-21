@@ -17,8 +17,8 @@ import javax.persistence.Table;
 
 import com.sun.istack.NotNull;
 
-import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity

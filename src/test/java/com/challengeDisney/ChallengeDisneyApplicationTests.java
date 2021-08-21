@@ -1,36 +1,63 @@
 package com.challengeDisney;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.junit.jupiter.api.Test;
+//import org.junit.runner.RunWith;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.context.junit4.SpringRunner;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.test.context.junit4.SpringRunner;
+
+import com.challengeDisney.DTO.UserDTO;
+import com.challengeDisney.Models.Role;
+import com.challengeDisney.Models.UserModel;
+import com.challengeDisney.Services.UserService;
 
 //import com.challengeDisney.Models.CharactersModel;
 //import com.challengeDisney.Models.MovieModel;
-import com.challengeDisney.Models.UserModel;
-import com.challengeDisney.Repositories.UserRepository;
+//import com.challengeDisney.Models.UserModel;
+//import com.challengeDisney.Repositories.UserRepository;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 class ChallengeDisneyApplicationTests {
 	@Autowired
-	BCryptPasswordEncoder bCryptEncoder;
-	
-	@Autowired
-	UserRepository userRepo;
-	
+	private UserService userService;
 	@Test
-	public void crearUsuario() {
-		UserModel user = new UserModel();
-		user.setUserName("ReCoil");
-		user.setPassword(bCryptEncoder.encode("1234"));
-		UserModel userReturn = userRepo.saveAndFlush(user);
-		assertTrue(userReturn.getPassword().equalsIgnoreCase(user.getPassword()));
+	public void rellenarTabla() {
+		
+		System.out.println("Creando usuarios y roles.");
+		// Roles
+		userService.saveRole(new Role(null,"ROLE_ADMIN"));
+		userService.saveRole(new Role(null,"ROLE_MODER"));
+		userService.saveRole(new Role(null,"ROLE_MANAGER"));
+		userService.saveRole(new Role(null,"ROLE_USER"));
+		
+		// Usuarios
+		UserModel userReturn = userService.saveUser(new UserDTO("DaamiAle", "DaamiAle", "Damian Bruque", "daamiale.recoil@gmail.com"));
+		
+		userService.addRoleToUser("DaamiAle", "ROLE_ADMIN");
+		assertTrue(userReturn.getPassword().equalsIgnoreCase("DaamiAle"));
 	}
+	
+	
+//	@Autowired
+//	BCryptPasswordEncoder bCryptEncoder;
+//	
+//	@Autowired
+//	UserRepository userRepo;
+//	
+//	@Test
+//	public void crearUsuario() {
+//		UserModel user = new UserModel();
+//		user.setUserName("ReCoil");
+//		user.setPassword(bCryptEncoder.encode("1234"));
+//		UserModel userReturn = userRepo.saveAndFlush(user);
+//		assertTrue(userReturn.getPassword().equalsIgnoreCase(user.getPassword()));
+//	}
 /*
 	@Autowired
 	private CharactersRepository characterRepo;

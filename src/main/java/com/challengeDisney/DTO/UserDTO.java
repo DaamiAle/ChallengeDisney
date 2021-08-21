@@ -4,9 +4,8 @@ import com.challengeDisney.Models.UserModel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data @AllArgsConstructor
 public class UserDTO {
 	private String userName;
 	private String password;
@@ -23,3 +22,9 @@ public class UserDTO {
 		return userEntity;
 	}
 }
+
+
+
+
+
+

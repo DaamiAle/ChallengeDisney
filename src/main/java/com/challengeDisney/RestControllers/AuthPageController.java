@@ -2,7 +2,6 @@ package com.challengeDisney.RestControllers;
 
 import java.net.URI;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,15 +13,18 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.challengeDisney.Services.AuthPageService;
 
+import lombok.RequiredArgsConstructor;
+
 import com.challengeDisney.DTO.UserDTO;
 import com.challengeDisney.Models.UserModel;
 
 
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthPageController {
-	@Autowired
-	AuthPageService authPageService;
+	
+	private final AuthPageService authPageService;
 	
 	@GetMapping("/login")
 	public String loginPage() {
@@ -40,7 +42,7 @@ public class AuthPageController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<UserModel> registerUser(@RequestBody UserDTO user){
-		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/auth/register").toUriString());
+		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/auth/login").toUriString());
 		return ResponseEntity.created(uri).body(authPageService.registerUser(user));
 	}
 	

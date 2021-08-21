@@ -1,7 +1,12 @@
 package com.challengeDisney.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +54,19 @@ public class UserService implements UserServiceInterface{
 		Role role = roleRepo.findByName(roleName);
 		System.out.printf("Agregando rol %s al usuario %s.",roleName, userName);
 		user.getRoles().add(role);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		UserModel user = userRepo.findByUserName(userName);
+		if (user == null) {
+			throw new UsernameNotFoundException("User not found.");
+		}
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		user.getRoles().forEach(role -> {
+			authorities.add(new SimpleGrantedAuthority(role.getName()));
+		});
+		return new User(user.getUserName(), user.getPassword(), authorities);
 	}
 	
 }
