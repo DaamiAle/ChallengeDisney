@@ -28,7 +28,18 @@ public class SecurityWeb extends WebSecurityConfigurerAdapter{
 		// TODO Auto-generated method stub
 		http.csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.authorizeRequests().anyRequest().permitAll();
+		http.authorizeRequests()
+		.antMatchers("/","/auth/*").permitAll()
+		.antMatchers("/users").access("hasRole('USER')")
+		.antMatchers("/webAdministration/*").access("hasRole('ADMIN')")
+		.anyRequest().authenticated()
+		.and()
+			.formLogin().loginPage("/auth/login").permitAll()
+			.defaultSuccessUrl("/auth/login/user").failureUrl("/auth/login?error=true")
+			.usernameParameter("userName")
+			.passwordParameter("password")
+		.and()
+			.logout().permitAll().logoutSuccessUrl("/auth/login?logout");
 		http.addFilter(new AuthenticationFilter(authenticationManagerBean()));
 	}
 	@Bean @Override
@@ -50,7 +61,7 @@ public class SecurityWeb extends WebSecurityConfigurerAdapter{
 //			.and()
 //				.formLogin().loginPage("/auth/login").permitAll()
 //				.defaultSuccessUrl("/auth/login/user").failureUrl("/auth/login?error=true")
-//				.usernameParameter("username")
+//				.usernameParameter("userName")
 //				.passwordParameter("password")
 //			.and()
 //				.logout().permitAll().logoutSuccessUrl("/auth/login?logout");

@@ -2,28 +2,22 @@ package com.challengeDisney;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.junit.jupiter.api.Test;
-//import org.junit.runner.RunWith;
-//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.challengeDisney.DTO.UserDTO;
 import com.challengeDisney.Models.Role;
 import com.challengeDisney.Models.UserModel;
 import com.challengeDisney.Services.UserService;
 
-//import com.challengeDisney.Models.CharactersModel;
-//import com.challengeDisney.Models.MovieModel;
-//import com.challengeDisney.Models.UserModel;
-//import com.challengeDisney.Repositories.UserRepository;
-
-//@RunWith(SpringRunner.class)
 @SpringBootTest
 class ChallengeDisneyApplicationTests {
+	@Autowired
+	BCryptPasswordEncoder bCryptEncoder;
 	@Autowired
 	private UserService userService;
 	@Test
@@ -31,21 +25,20 @@ class ChallengeDisneyApplicationTests {
 		
 		System.out.println("Creando usuarios y roles.");
 		// Roles
-		userService.saveRole(new Role(null,"ROLE_ADMIN"));
-		userService.saveRole(new Role(null,"ROLE_MODER"));
-		userService.saveRole(new Role(null,"ROLE_MANAGER"));
-		userService.saveRole(new Role(null,"ROLE_USER"));
+		userService.saveRole(new Role(null,"ROLE_ADMIN",new ArrayList<UserModel>()));
+		userService.saveRole(new Role(null,"ROLE_MODER",new ArrayList<UserModel>()));
+		userService.saveRole(new Role(null,"ROLE_MANAGER",new ArrayList<UserModel>()));
+		userService.saveRole(new Role(null,"ROLE_USER",new ArrayList<UserModel>()));
 		
 		// Usuarios
 		UserModel userReturn = userService.saveUser(new UserDTO("DaamiAle", "DaamiAle", "Damian Bruque", "daamiale.recoil@gmail.com"));
 		
-		userService.addRoleToUser("DaamiAle", "ROLE_ADMIN");
-		assertTrue(userReturn.getPassword().equalsIgnoreCase("DaamiAle"));
+		//userService.addRoleToUser("DaamiAle", "ROLE_ADMIN");
+		assertTrue(userReturn.getPassword().equals(bCryptEncoder.encode("DaamiAle")));
 	}
 	
 	
-//	@Autowired
-//	BCryptPasswordEncoder bCryptEncoder;
+
 //	
 //	@Autowired
 //	UserRepository userRepo;

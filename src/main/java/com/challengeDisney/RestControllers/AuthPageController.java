@@ -26,14 +26,14 @@ public class AuthPageController {
 	
 	private final AuthPageService authPageService;
 	
-	@GetMapping("/login")
-	public String loginPage() {
-		return "ESTA ES LA PAGINA DE LOGIN";
-	}
-	@GetMapping
-	public String authPage() {
-		return "ESTA ES LA PAGINA DE AUTENTICACION";
-	}
+//	@GetMapping("/login")
+//	public String loginPage() {
+//		return "ESTA ES LA PAGINA DE LOGIN";
+//	}
+//	@GetMapping
+//	public String authPage() {
+//		return "ESTA ES LA PAGINA DE AUTENTICACION";
+//	}
 
 //	@PostMapping("/login")
 //	public String loginUser(@RequestBody UserDTO user) {
